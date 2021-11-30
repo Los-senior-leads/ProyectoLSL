@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pages',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router :Router) { }
 
   ngOnInit() {
+  }
+
+  goToBusiness() : void{
+    this.router.navigate(['pages/unidadesAdministrativas']);
+  }
+
+  goToBuilding() : void{
+    this.router.navigate(['pages/edificios']);
+  }
+
+  goToOrganization() : void{
+    this.router.navigate(['pages/organigrama']);
+  }
+
+  goToSalary() : void{
+    this.router.navigate(['pages/escalaSalarial']);
   }
 
 }

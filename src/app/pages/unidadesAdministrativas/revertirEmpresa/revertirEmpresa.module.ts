@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login.component';
+import { RevertirEmpresaComponent } from './revertirEmpresa.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent}
+  {path: '', component: RevertirEmpresaComponent}
 ]
 
 @NgModule({
@@ -12,8 +12,6 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [
-    LoginComponent
-  ]
+  declarations: [RevertirEmpresaComponent]
 })
-export class LoginModule { }
+export class RevertirEmpresaModule { }
