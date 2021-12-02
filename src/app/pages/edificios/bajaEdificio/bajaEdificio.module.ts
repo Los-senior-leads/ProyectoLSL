@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BajaEmpresaComponent } from '../../unidadesAdministrativas/bajaEmpresa/bajaEmpresa.component';
 
 const routes: Routes = [
-  {path: '', component: BajaEmpresaComponent}
+  {path: '', component: BajaEdificioComponent}
 ]
 
 @NgModule({
