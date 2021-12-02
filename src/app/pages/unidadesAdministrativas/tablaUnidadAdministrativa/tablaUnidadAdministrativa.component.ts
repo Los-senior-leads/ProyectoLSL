@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tablaUnidadAdministrativa',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TablaUnidadAdministrativaComponent implements OnInit {
 
-  constructor() { }
+  @Input() data:any;
+  
+  constructor(private router :Router) { }
 
   ngOnInit() {
+  }
+
+  goToCrearEmpresa() : void{
+    this.router.navigate(['pages/unidadesAdministrativas/crearUnidadAdministrativa']);
+  }
+
+  goToReporteEmpresa() : void{
+    this.router.navigate(['pages/unidadesAdministrativas/reporteEmpresas']);
+  }
+  
+  /* Para el paso de parametros en el momento de la navegacion, usar el input data.codigo*/ 
+  goToInfoEmpresa() : void{
+    this.router.navigate(['pages/unidadesAdministrativas/informacionUnidadAdministrativa'], this.data);
   }
 
 }
