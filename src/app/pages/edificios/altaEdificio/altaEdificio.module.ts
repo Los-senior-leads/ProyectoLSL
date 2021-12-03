@@ -5,7 +5,7 @@ import { AltaEmpresaComponent } from '../../unidadesAdministrativas/altaEmpresa/
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: '', component: AltaEmpresaComponent}
+  {path: '', component: AltaEdificioComponent}
 ]
 
 @NgModule({

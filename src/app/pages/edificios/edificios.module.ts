@@ -12,7 +12,7 @@ const routes: Routes = [
       {path: 'bajaEdificio', loadChildren: () => import('./bajaEdificio/bajaEdificio.module').then(m => m.BajaEdificioModule)},
       {path: 'cambiarCodigoEdificio', loadChildren: () => import('./cambiarCodigoEdificio/cambiarCodigoEdificio.module').then(m => m.CambiarCodigoEdificioModule)},
       {path: 'crearEdificio', loadChildren: () => import('./crearEdificio/crearEdificio.module').then(m => m.CrearEdificioModule)},
-      {path: 'informacionedificio', loadChildren: () => import('./infoEdificio/infoEdificio.module').then(m => m.InfoEdificioModule)},
+      {path: 'informacionEdificio', loadChildren: () => import('./infoEdificio/infoEdificio.module').then(m => m.InfoEdificioModule)},
       {path: 'mapaEdificio', loadChildren: () => import('./mapaEdificios/mapaEdificios.module').then(m => m.MapaEdificiosModule)},
       {path: 'modificarEdificio', loadChildren: () => import('./modificarEdificio/modificarEdificio.module').then(m => m.ModificarEdificioModule)},
       {path: 'reporteEdificios', loadChildren: () => import('./reporteEdificios/reporteEdificios.module').then(m => m.ReporteEdificiosModule)},

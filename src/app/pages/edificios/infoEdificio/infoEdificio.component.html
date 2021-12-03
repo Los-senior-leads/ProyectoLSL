@@ -1,3 +1,43 @@
-<p>
-  infoEdificio works!
-</p>
+<div class="borde">
+  <div class="bordeVerde">
+    <div class="d-flex justify-content-center">
+      <p  class="fw-normal" style="font-size:x-large"> Nombre edificio</p>
+    </div>
+
+    <dl class="row">
+      <dt class="col-sm-3">Nombre:</dt>
+      <dd class="col-sm-9">Edificio1</dd>
+    
+      <dt class="col-sm-3">Código:</dt>
+      <!-- Puedes Usar pipes para que visualmente se vea como una fecha al pasarlo de la base de datos-->
+      <dd class="col-sm-9"> 12</dd>
+    
+      <dt class="col-sm-3">Coordenadas:</dt>
+      <dd class="col-sm-9">112233</dd>
+    
+      <dt class="col-sm-3 text-truncate">Tipo de edificio:</dt>
+      <dd class="col-sm-9">This can be useful when space is tight. Adds an ellipsis at the end.</dd>
+    
+      <dt class="col-sm-3">Distrito:</dt>
+      <dd class="col-sm-9">xxx</dd>
+
+      <dt class="col-sm-3">Estado:</dt>
+      <dd class="col-sm-9">Activo</dd>
+
+      <dt class="col-sm-3">Dirección:</dt>
+      <dd class="col-sm-9">Cota Cota #35 </dd>
+      
+    </dl>
+    <div class="botones">
+      <div class="d-flex justify-content-around">
+        <button type="button" class="btn btn-dark btn-block" style="background-color: #47525E; width: max-content;" (click)="goToAltaEdificio()">Dar de alta</button>
+        <button type="button" class="btn btn-dark btn-block" style="background-color: #47525E; width: max-content;" (click)="goToBajaEdificio()">Dar de baja</button>
+        <button type="button" class="btn btn-dark btn-block" style="background-color: #47525E; width: max-content;" (click)="goToCambiarCodigoEdificio()">Cambiar código</button>
+        <button type="button" class="btn btn-dark btn-block" style="background-color: #47525E; width: max-content;" (click)="goToModificarEdificio()">Modificar</button>
+        <button type="button" class="btn btn-dark btn-block" style="background-color: #47525E; width: max-content;" (click)="goToRevertirEdificio()">Revertir</button>
+        <button type="button" class="btn btn-dark btn-block" style="background-color: #47525E; width: max-content;" (click)="goToMapaEdificio()">Mapa</button>
+      </div>
+    </div>
+  </div>
+    
+</div>
