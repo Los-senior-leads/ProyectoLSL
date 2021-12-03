@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-infoEsaclaSalarial',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoEsaclaSalarialComponent implements OnInit {
 
-  constructor() { }
+  @Input() data:any;
+
+  constructor(private router :Router) { }
 
   ngOnInit() {
+  }
+
+  goToModificarEsaclaSalarial() : void{
+    this.router.navigate(['pages/escalaSalarial/modificarEscalaSalarial'], this.data);
+  }
+
+  goToModificarsueldo() : void{
+    this.router.navigate(['pages/escalaSalarial/modificarSueldo'], this.data);
   }
 
 }
