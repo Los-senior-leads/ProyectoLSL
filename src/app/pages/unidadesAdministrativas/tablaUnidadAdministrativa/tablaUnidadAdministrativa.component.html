@@ -35,31 +35,25 @@
         <th scope="col">Estado</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let empresa of empresas">
+
+
       <tr>
         <!-- Manera de conectar con la base de datos  a traves de un servicio
         <th scope="row">{{data.codigo}}</th> -->
 
         <!-- El Codigo debe estar en forma de boton  o hipervinculo para llevarlo a la información-->
         <th scope="row">
+          
           <button (click)=" goToInfoEmpresa()">
-            1
+            {{empresa.id}}
           </button>
         </th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
+        <td>{{empresa.nombre}}</td>
+        <td>{{empresa.fecha_creacion}}</td>
+        <td>{{empresa.descripcion}}</td>
+        <td>{{empresa.funciones}}</td>
+        <td>{{empresa.estado}}</td>
       </tr>
     </tbody>
   </table>
