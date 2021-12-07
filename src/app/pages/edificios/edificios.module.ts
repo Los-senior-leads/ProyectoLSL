@@ -17,7 +17,8 @@ const routes: Routes = [
       {path: 'modificarEdificio', loadChildren: () => import('./modificarEdificio/modificarEdificio.module').then(m => m.ModificarEdificioModule)},
       {path: 'reporteEdificios', loadChildren: () => import('./reporteEdificios/reporteEdificios.module').then(m => m.ReporteEdificiosModule)},
       {path: 'revertirEdificio', loadChildren: () => import('./revertirEdificio/revertirEdificio.module').then(m => m.RevertirEdificioModule)},
-      {path: 'tablaEdificios', loadChildren: () => import('./tablaEdificios/tablaEdificios.module').then(m => m.TablaEdificiosModule)}
+      {path: 'tablaEdificios', loadChildren: () => import('./tablaEdificios/tablaEdificios.module').then(m => m.TablaEdificiosModule)},
+      {path: 'tablaEdificiosUsuarios', loadChildren: () => import('./tablaEdificiosUsuarios/tablaEdificiosUsuarios.module').then(m => m.TablaEdificiosUsuariosModule)}
     ]
   }
 ];
