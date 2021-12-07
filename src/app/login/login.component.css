@@ -1,0 +1,38 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+.main{
+    /*background-image: url(https://i.pinimg.com/originals/ae/01/4a/ae014a6cd352ac4643f0fb10f01fa9bb.png);*/
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/f/f1/Flag_of_Santa_Cruz.svg);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+}
+.border{
+    border: 10px solid 084225;
+    width: 500px;
+    height: 50px;
+    top: calc( 75vh - 50% );
+    left: 45%;
+    position: absolute;
+    margin-left: -150px;
+    background-color: white;
+}
+.form-label{
+    text-align: left;
+}
+
+.h1, h2, p{
+    text-align: center;
+}
+
+.btn{
+    background-color: #47525E;
+    border: #47525E;
+    left: 40%;
+    width:460px;
+    height:50px;
+}

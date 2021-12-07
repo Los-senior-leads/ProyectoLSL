@@ -1,0 +1,34 @@
+.bordeVerde{
+    padding-bottom: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-left: 30px;
+    background-color: #84B68F;
+    border-radius: 5px;
+}
+.borde{
+    padding-bottom: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 60rem;
+    padding: 0 .5rem;
+  }
+  
+  details {
+    background: #eee;
+    margin-bottom: 2rem;
+    padding: .5rem 1rem;
+  }
+  
+  summary {
+    cursor: pointer;
+  }
+  
+  summary > * {
+    display: inline;
+  }
