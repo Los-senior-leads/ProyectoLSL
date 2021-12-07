@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TablaEdificiosUsuariosComponent } from './tablaEdificiosUsuarios.component';
+import { OrganigramaUserComponent } from './organigramaUser.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: '', component: TablaEdificiosUsuariosComponent}
+  {path: '', component: OrganigramaUserComponent}
 ]
 
 @NgModule({
@@ -12,6 +12,6 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [TablaEdificiosUsuariosComponent]
+  declarations: [OrganigramaUserComponent]
 })
-export class TablaEdificiosUsuariosModule { }
+export class OrganigramaUserModule { }
