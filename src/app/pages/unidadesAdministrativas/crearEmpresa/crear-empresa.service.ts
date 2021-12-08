@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class CrearEmpresaService {
 
-  empresaUrl = 'http://127.0.0.1:5000/empresas/crear'
+  empresaUrl = 'http://127.0.0.1:5000/empresas'
 
   constructor(private http: HttpClient) { }
 

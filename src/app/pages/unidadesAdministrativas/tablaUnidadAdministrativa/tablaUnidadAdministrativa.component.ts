@@ -12,7 +12,6 @@ import { TablaUnidadAdministrativaService } from './tabla-unidad-administrativa.
 
 export class TablaUnidadAdministrativaComponent implements OnInit {
 
-  @Input() data:any;
   empresas: Empresa[] = [];
   
   constructor(private router: Router, private tablaUnidadAdministrativa: TablaUnidadAdministrativaService) { }

@@ -9,11 +9,15 @@ import { Empresa } from '../empresa';
 @Injectable({
   providedIn: 'root'
 })
-export class InfoEmpresaService {
+export class ModificarEmpresaService {
 
   empresaUrl = 'http://127.0.0.1:5000/empresas/'
 
   constructor(private http: HttpClient) { }
+
+  updateEmpresa(id: String, empresa:Empresa): Observable<Empresa> {
+    return this.http.put<Empresa>(this.empresaUrl+id, empresa)
+  }
 
   getEmpresa(id: String): Observable<Empresa> {
     return this.http.get<Empresa>(this.empresaUrl+id)
