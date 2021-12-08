@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class InfoEmpresaComponent implements OnInit {
 
-  @Input() data:any;
+  @Input() id: any;
 
   constructor(private router :Router) { }
   
@@ -17,19 +17,19 @@ export class InfoEmpresaComponent implements OnInit {
   }
 
   goToBajaEmpresa() : void{
-    this.router.navigate(['pages/unidadesAdministrativas/altaUnidadAdministrativa'], this.data);
+    this.router.navigate(['pages/unidadesAdministrativas/altaUnidadAdministrativa']);
   }
 
   goToAltaEmpresa() : void{
-    this.router.navigate(['pages/unidadesAdministrativas/bajaUnidadAdministrativa'], this.data);
+    this.router.navigate(['pages/unidadesAdministrativas/bajaUnidadAdministrativa']);
   }
 
   goToRevertirEmpresa() : void{
-    this.router.navigate(['pages/unidadesAdministrativas/revertirUnidadAdministrativa'], this.data);
+    this.router.navigate(['pages/unidadesAdministrativas/revertirUnidadAdministrativa']);
   }
 
   goToModificarEmpresa() : void{
-    this.router.navigate(['pages/unidadesAdministrativas/modificarUnidadAdministrativa'], this.data);
+    this.router.navigate(['pages/unidadesAdministrativas/modificarUnidadAdministrativa']);
   }
 
 

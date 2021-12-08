@@ -11,7 +11,7 @@ const routes: Routes = [
       {path: 'altaUnidadAdministrativa', loadChildren: () => import('./altaEmpresa/altaEmpresa.module').then(m => m.AltaEmpresaModule)},
       {path: 'bajaUnidadAdministrativa', loadChildren: () => import('./bajaEmpresa/bajaEmpresa.module').then(m => m.BajaEmpresaModule)},
       {path: 'crearUnidadAdministrativa', loadChildren: () => import('./crearEmpresa/crearEmpresa.module').then(m => m.CrearEmpresaModule)},
-      {path: 'informacionUnidadAdministrativa', loadChildren: () => import('./infoEmpresa/infoEmpresa.module').then(m => m.InfoEmpresaModule)},
+      {path: 'informacionUnidadAdministrativa/:id', loadChildren: () => import('./infoEmpresa/infoEmpresa.module').then(m => m.InfoEmpresaModule)},
       {path: 'modificarUnidadAdministrativa', loadChildren: () => import('./modificarEmpresa/modificarEmpresa.module').then(m => m.ModificarEmpresaModule)},
       {path: 'reporteEmpresas', loadChildren: () => import('./reporteEmpresas/reporteEmpresas.module').then(m => m.ReporteEmpresasModule)},
       {path: 'revertirUnidadAdministrativa', loadChildren: () => import('./revertirEmpresa/revertirEmpresa.module').then(m => m.RevertirEmpresaModule)},

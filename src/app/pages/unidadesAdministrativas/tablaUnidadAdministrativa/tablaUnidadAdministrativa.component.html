@@ -36,8 +36,6 @@
       </tr>
     </thead>
     <tbody *ngFor="let empresa of empresas">
-
-
       <tr>
         <!-- Manera de conectar con la base de datos  a traves de un servicio
         <th scope="row">{{data.codigo}}</th> -->
@@ -45,7 +43,8 @@
         <!-- El Codigo debe estar en forma de boton  o hipervinculo para llevarlo a la información-->
         <th scope="row">
           
-          <button (click)=" goToInfoEmpresa()">
+          <button (click)=" goToInfoEmpresa(empresa.id)">
+            <!-- <app-infoEmpresa [id]="empresa.id"></app-infoEmpresa> -->
             {{empresa.id}}
           </button>
         </th>

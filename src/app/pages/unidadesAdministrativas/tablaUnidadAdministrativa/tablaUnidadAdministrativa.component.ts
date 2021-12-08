@@ -39,8 +39,8 @@ export class TablaUnidadAdministrativaComponent implements OnInit {
   }
   
   /* Para el paso de parametros en el momento de la navegacion, usar el input data.codigo*/ 
-  goToInfoEmpresa() : void{
-    this.router.navigate(['pages/unidadesAdministrativas/informacionUnidadAdministrativa',this.data]);
+  goToInfoEmpresa(id: number) : void{
+    this.router.navigate(['pages/unidadesAdministrativas/informacionUnidadAdministrativa',id]);
   }
 
 }
