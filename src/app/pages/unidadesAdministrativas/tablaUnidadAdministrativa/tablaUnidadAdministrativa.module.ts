@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TablaUnidadAdministrativaComponent } from './tablaUnidadAdministrativa.component';
 import { RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   {path: '', component: TablaUnidadAdministrativaComponent}
 ]

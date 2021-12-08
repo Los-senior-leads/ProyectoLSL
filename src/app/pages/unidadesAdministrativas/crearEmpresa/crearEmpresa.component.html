@@ -7,33 +7,35 @@
     </div>
 
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Nombre de la unidad administrativa" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <input type="text" class="form-control" #nombreUnidad placeholder="Nombre de la unidad administrativa" aria-label="Recipient's username" aria-describedby="button-addon2">
     </div>
 
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Fecha de creación" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <input type="text" class="form-control" #fechaCreacion placeholder="Fecha de creación" aria-label="Recipient's username" aria-describedby="button-addon2">
     </div>
 
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Fecha de cierre" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <input type="text" class="form-control" #fechaCierre placeholder="Fecha de cierre" aria-label="Recipient's username" aria-describedby="button-addon2">
     </div>
 
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Descripción" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <input type="text" class="form-control" #descripcion placeholder="Descripción" aria-label="Recipient's username" aria-describedby="button-addon2">
     </div>
 
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Funciones" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <input type="text" class="form-control" #funciones placeholder="Funciones" aria-label="Recipient's username" aria-describedby="button-addon2">
     </div>
 
-    <select class="form-select" aria-label="Default select example">
+    <select class="form-select" #estado aria-label="Default select example">
       <option selected>Estado</option>
-      <option value="1">Activo</option>
-      <option value="2">Innactivo</option>
+      <option value="Activo">Activo</option>
+      <option value="Inactivo">Inactivo</option>
     </select>
 
     <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-dark btn-block" style="background-color: #47525E; width: max-content;" >Crear</button>
+      <button (click)="add(nombreUnidad.value, fechaCreacion.value, fechaCierre.value, descripcion.value, funciones.value, estado.value)
+      ;nombreUnidad.value=''; fechaCreacion.value=''; fechaCierre.value=''; descripcion.value=''; funciones.value=''" 
+      type="button" class="btn btn-dark btn-block" style="background-color: #47525E; width: max-content;" >Crear</button>
     </div>
 
   </div>
