@@ -83,13 +83,14 @@ class EscalaModel(db.Model):
     fecha_aprobacion = db.Column(db.String(255))
     fecha_cierre = db.Column(db.String(255))
 
-    def __init__(self, id_empresa, categoria, sub_categoria, clase, descripcion, nivel_salarial,
+    def __init__(self, id_empresa, categoria, sub_categoria, clase, descripcion, estado, nivel_salarial,
                 nombre_puesto, haber_basico, numero_items, costo_mensual, costo_anual, fecha_aprobacion, fecha_cierre):
         self.id_empresa = id_empresa
         self.categoria = categoria
         self.sub_categoria = sub_categoria
         self.clase = clase
         self.descripcion = descripcion
+        self.estado = estado
         self.nivel_salarial = nivel_salarial
         self.nombre_puesto = nombre_puesto
         self.haber_basico = haber_basico
