@@ -18,4 +18,8 @@ export class LoginComponent implements OnInit {
     console.log("cambiando a pages")
   }
 
+  goToPagesUser() : void{
+    this.router.navigate(['pagesUser']);
+  }
+
 }

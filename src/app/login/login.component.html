@@ -13,7 +13,12 @@
             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
             <input type="password" class="form-control" id="exampleInputPassword1">
           </div>
-          <button type="submit" class="btn btn-primary" (click)="goToPages()">Ingresar</button>
+          <div class = "paddingBotones">
+            <button type="submit" class="btn btn-primary" (click)="goToPagesUser()">Ingresar como usuario</button>
+          </div>
+          <div class = "paddingBotones">
+            <button type="submit" class="btn btn-primary" (click)="goToPages()">Ingresar como administrador</button>
+          </div>
         </form>
       </div>
     </div>
