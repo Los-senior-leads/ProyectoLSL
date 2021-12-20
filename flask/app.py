@@ -480,6 +480,7 @@ def graficoFechasDeCreacion(fechas):
     plt.title("Número de empresas creadas a travez de los años")
 
     plt.savefig("../src/assets/graficoEmpresasFechasDeCreacion.png")
+    
 
 #Cuenta los elementos únicos de un array de elementos dado
 def contarElementosRepetidos(elementos):
