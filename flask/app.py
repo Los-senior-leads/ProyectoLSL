@@ -4,6 +4,9 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey, ForeignKeyConstraint
 from flask_marshmallow import Marshmallow
 from flask_restx import Api, Resource, fields, marshal_with
+from matplotlib import colors
+import matplotlib.pyplot as plt
+import numpy as np
 
 app = Flask(__name__)
 api = Api(app)
@@ -277,6 +280,29 @@ class Empresas(Resource):
         db.session.commit()
         return empresa
 
+@api.route('/reporteEmpresas')
+class Empresas(Resource):
+    def get(self):
+        all_empresas = EmpresaModel.query.all()
+        result = empresas_schema.dump(all_empresas)
+
+        fechasCreacionEmpresas =[]
+        fechasCierreEmpresas = []
+        estadoEmpresas=[]
+
+        for emp in all_empresas:
+            fechasCreacionEmpresas.append(emp.fecha_creacion)
+            fechasCierreEmpresas.append(emp.fecha_cierre)
+            estadoEmpresas.append(emp.estado)
+        
+        graficoFechasDeCreacion(fechasCierreEmpresas)
+        graficoFechasDeCierre(fechasCierreEmpresas)
+        graficoEstado(estadoEmpresas)
+        
+
+        return jsonify(result)
+
+
 @api.route('/edificios')
 class Edificios(Resource):
     def get(self):
@@ -331,6 +357,24 @@ class Edificios(Resource):
 
         db.session.commit()
         return edificio
+
+@api.route('/reporteEdificios')
+class Edificios(Resource):
+    def get(self):
+        all_edificios = EdificioModel.query.all()
+        result = edificio_schema.dump(all_edificios)
+
+        distrititosEdificios =[]
+        tiposEdificios = []
+
+        for edif in all_edificios:
+            distrititosEdificios.append(edif.distrito)
+            tiposEdificios.append(edif.tipo)
+        
+        graficoDistritoEdificio(distrititosEdificios)
+        graficoTipoEdificio(tiposEdificios)
+
+        return jsonify(result)
 
 @api.route('/escalas')
 class Escalas(Resource):
@@ -396,7 +440,166 @@ class Escalas(Resource):
         db.session.commit()
         return escala
 
+@api.route('/reporteSalarial')
+class Escala(Resource):
+    def get(self):
+        all_escalas = EscalaModel.query.all()
+        result = escalas_schema.dump(all_escalas)
+
+        fechaCreacionEscala =[]
+        fechaCierreEscala = []
+
+        for esca in all_escalas:
+            fechaCreacionEscala.append(esca.fecha_aprobacion)
+            fechaCierreEscala.append(esca.fecha_cierre)
+        
+        graficoFechasDeAprobacionEscala(fechaCreacionEscala)
+        graficoFechasDeCierreEscala(fechaCierreEscala)
+
+        return jsonify(result)
+
+
 # api.add_resource(Empresas, "/empresas/<int:video_id>")
+
+###Funciones de creacion de graficos para reportes
+
+#Grafica las fechas de creacion de las distintas empresas
+def graficoFechasDeCreacion(fechas):
+    plt.clf()
+    years = []
+    for fecha in fechas:
+        years.append(int(fecha.split(sep="/")[2]))
+    years.sort()
+    contadorEmpresas = contarElementosRepetidos(years)
+    uniqueYear = list(set(years))
+    uniqueYear.sort()
+    plt.plot(uniqueYear,contadorEmpresas,marker='o',linestyle='--',color='g')
+    
+    plt.xlabel("Años")
+    plt.ylabel("Número de empresas")
+    plt.title("Número de empresas creadas a travez de los años")
+
+    plt.savefig("../src/assets/graficoEmpresasFechasDeCreacion.png")
+
+#Cuenta los elementos únicos de un array de elementos dado
+def contarElementosRepetidos(elementos):
+    if len(elementos)==0:
+        return []
+    contador=[]
+    i = -1
+    elemI = 0
+    for elem in elementos:
+        if elemI != elem:
+            contador.append(1)
+            elemI = elem
+            i=i+1
+        else:
+            contador[i]=contador[i]+1
+    return contador
+
+#Grafica las fechas de creacion de las distintas empresas
+def graficoFechasDeCierre(fechas):
+    plt.clf()
+    years = []
+    for fecha in fechas:
+        if len(fecha)>0 :
+            years.append(int(fecha.split(sep="/")[2]))
+    years.sort()
+    contadorEmpresas = contarElementosRepetidos(years)
+    uniqueYear = list(set(years))
+    uniqueYear.sort()
+    plt.plot(uniqueYear,contadorEmpresas,marker='o',linestyle='--',color='r')
+    
+    plt.xlabel("Años")
+    plt.ylabel("Número de empresas")
+    plt.title("Número de empresas cerradas a travez de los años")
+
+    plt.savefig("../src/assets/graficoEmpresasFechasDeCierre.png")
+    #plt.show()
+
+#Grafica de pie de los estados de las empresas
+def graficoEstado(estados):
+    plt.clf()
+    estadosLabels = ["Alta","Baja"]
+    contador =[0,0]
+    for estado in estados:
+        if estado.lower() == "alta":
+            contador[0]=contador[0]+1
+        elif estado.lower() == "baja":
+            contador[1]=contador[1]+1
+    plt.pie(contador,labels=estadosLabels)
+    plt.title("Estados de empresas registradas")
+    plt.savefig("../src/assets/graficoEmpresasEstado.png")
+
+
+#Grafica de pie de tipos de una empresa
+def graficoTipoEdificio(tipos):
+    plt.clf()
+    tiposLabels = ["Propio","Alquilado","Externo"]
+    contador =[0,0,0]
+    for tipo in tipos:
+        if tipo.lower() == "propio":
+            contador[0]=contador[0]+1
+        elif tipo.lower() == "alquilado":
+            contador[1]=contador[1]+1
+        elif tipo.lower() == "externo":
+            contador[2]=contador[2]+1
+    plt.pie(contador,labels=tiposLabels)
+    plt.title("Tipos de edificios")
+    plt.savefig("../src/assets/graficoEdificioTipo.png")
+
+#histograma de distritos de edificios
+def graficoDistritoEdificio(distritos):
+    plt.clf()
+    distritos.sort()
+    distritolabels = list(set(distritos))
+    distritolabels.sort()
+    contadorDistritos = contarElementosRepetidos(distritos)
+    plt.bar(distritolabels,contadorDistritos,color=['red','green','blue'])
+    plt.title("Distribucion de distritos de edificios")
+    plt.savefig("../src/assets/graficoEdificioDistrito.png")
+
+#Grafico de tipo Scatter de aprobacion de escala
+def graficoFechasDeAprobacionEscala(fechas):
+    plt.clf()
+    years = []
+    for fecha in fechas:
+        years.append(int(fecha.split(sep="/")[2]))
+    years.sort()
+    contadorEscalas = contarElementosRepetidos(years)
+    uniqueYear = list(set(years))
+    uniqueYear.sort()
+
+    plt.scatter(uniqueYear,contadorEscalas)
+    
+    plt.xlabel("Años")
+    plt.ylabel("Número de escalas")
+    plt.title("Número de escalas salariales creadas a travez de los años")
+
+    plt.savefig("../src/assets/graficoEscalaFechasDeAprobacion.png")
+
+
+#Grafico de fechas de cierre de escala salarial
+def graficoFechasDeCierreEscala(fechas):
+    plt.clf()
+    years = []
+    for fecha in fechas:
+        years.append(int(fecha.split(sep="/")[2]))
+    years.sort()
+    contadorEscalas = contarElementosRepetidos(years)
+    uniqueYear = list(set(years))
+    uniqueYear.sort()
+
+    print(uniqueYear)
+    print(contadorEscalas)
+
+    plt.scatter(uniqueYear,contadorEscalas,color='red')
+    
+    plt.xlabel("Años")
+    plt.ylabel("Número de escalas")
+    plt.title("Número de escalas salariales cerradas a travez de los años")
+
+    plt.savefig("../src/assets/graficoEscalaFechasDeCierre.png")    
 
 if __name__ == "__main__":
     app.run(debug=True)
