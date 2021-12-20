@@ -10,7 +10,7 @@ jobs:
     # use the pyenv-action version 7
       uses: gabrielfalcao/pyenv-action@v7
       with:
-        default: 3.8.6 # pick 3.8.6 verion 
+        default: 3.7.12 # pick 3.8.6 verion 
         command: pip install -U pip  # upgrade pip after installing python
       
     - name: create environment
