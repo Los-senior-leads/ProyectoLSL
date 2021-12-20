@@ -4,8 +4,17 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey, ForeignKeyConstraint
 from flask_marshmallow import Marshmallow
 from flask_restx import Api, Resource, fields, marshal_with
+
+from passlib.apps import custom_app_context as pwd_context
+from fastapi_jwt_auth import AuthJWT
+from pydantic import BaseModel
+from fastapi_jwt_auth.exceptions import AuthJWTException
+from fastapi import FastAPI, HTTPException, Depends, Request
+from fastapi.responses import JSONResponse
+
 from matplotlib import colors
 import generacionReportes as gr
+
 
 app = Flask(__name__)
 api = Api(app)
@@ -18,15 +27,22 @@ ma = Marshmallow(app)
 ######### DATABASE MODELS #########
 
 class Usuario(db.Model):
-    id = db.Column(db.String(255), primary_key=True)
-    nombre = db.Column(db.String(255))
-    apellido = db.Column(db.String(255))
-    rol = db.Column(db.String(255))
+    id = db.Column(db.Integer(), primary_key=True)
+    nombre = db.Column(db.String(30), unique=True)
+    contrasena  = db.Column(db.String(30))
+    rol = db.Column(db.String(20))
 
-    def __init__(self, nombre, apellido, rol):
+    def __init__(self, nombre, contrasena , rol):
         self.nombre = nombre
-        self.apellido = apellido
+        self.contrasena  = pwd_context.encrypt(contrasena)
         self.rol = rol
+
+    # def hash_password(self, password_hash):
+    #     self.password_hash = pwd_context.encrypt(password_hash)
+
+    # def verify_password(self, password_hash):
+    #     return pwd_context.verify(password_hash, self.password_hash)
+
 
 class EmpresaModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -142,7 +158,7 @@ db.create_all()
 # Schemas
 class UsuarioSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'nombre', 'apellido', 'rol')
+        fields = ('id', 'nombre', 'contrasena', 'rol')
 
 user_schema = UsuarioSchema()
 users_schema = UsuarioSchema(many=True)
@@ -187,6 +203,15 @@ class CambioEm(ma.Schema):
 cambioEm_schema = EmpresaSchema()
 cambioEms_schema = EmpresaSchema(many=True)
 
+
+resource_fields_usuarios = api.model("Usuario", {
+    'id': fields.Integer,
+    'nombre': fields.String,
+    'contrasena': fields.String,
+    'rol' : fields.String
+})
+
+
 resource_fields_empresa = api.model("Empresa", {
     'id': fields.Integer,
     'nombre': fields.String,
@@ -228,6 +253,81 @@ resource_fields_escala = api.model("Escala", {
 })
 
 # Operations
+class Settings(BaseModel):
+    authjwt_secret_key: str = "secret"
+
+# @AuthJWT.load_config
+# def get_config():
+#     return Settings()
+
+# @app.exception_handler(AuthJWTException)
+# def authjwt_exception_handler(request: Request, exc: AuthJWTException):
+#     return JSONResponse(
+#         status_code=exc.status_code,
+#         content={"detail": exc.message}
+#     )
+
+@api.route('/login')
+class Usuarios(Resource):
+    def get(self):
+        all_usuarios = Usuario.query.all()
+        result = users_schema.dump(all_usuarios)
+        print(result)
+        return jsonify(result)
+
+    # def login(user: Usuario, Authorize: AuthJWT = Depends()):
+    #     if user.username != "test" or user.password != "test":
+    #         raise HTTPException(status_code=401, detail="Bad username or password")
+    #     access_token = Authorize.create_access_token(subject=user.username)
+    #     return {"access_token": access_token}
+
+@api.route('/usuarios')
+class Usuarios(Resource):
+    def get(self):
+        all_usuarios = Usuario.query.all()
+        result = users_schema.dump(all_usuarios)
+        print(result)
+        return jsonify(result)
+
+    @api.marshal_with(resource_fields_usuarios)
+    def post(self):
+        nombre = request.json['nombre']
+        contrasena = request.json['contrasena']
+        rol = request.json['rol']
+
+        new_user = Usuario(nombre, contrasena, rol)
+        
+        db.session.add(new_user)
+        db.session.commit()
+
+        return new_user
+
+@api.route('/usuarios/<int:usuario_id>')
+class Usuarios(Resource):
+
+    @api.marshal_with(resource_fields_usuarios)
+    def get(self, usuario_id):
+        usuario = Usuario.query.get(usuario_id)
+        return usuario
+
+    @api.marshal_with(resource_fields_usuarios)
+    def put(self, usuario_id):
+        usuario = Usuario.query.get(usuario_id)
+        usuario.nombre = request.json['nombre']
+        usuario.contrasena = request.json['contrasena']
+        usuario.rol = request.json['rol']
+
+        db.session.commit()
+        return usuario
+
+    @api.marshal_with(resource_fields_usuarios)
+    def delete(self, usuario_id):
+        usuario = Usuario.query.get(usuario_id)
+        db.session.delete(usuario)
+        db.session.commit()
+        return usuario
+
+
 
 @api.route('/empresas')
 class Empresas(Resource):
@@ -279,6 +379,7 @@ class Empresas(Resource):
 
         db.session.commit()
         return empresa
+
 
 @api.route('/reporteEmpresas')
 class Empresas(Resource):
@@ -356,6 +457,7 @@ class Edificios(Resource):
 
         db.session.commit()
         return edificio
+
 
 @api.route('/reporteEdificios')
 class Edificios(Resource):
@@ -439,6 +541,7 @@ class Escalas(Resource):
         db.session.commit()
         return escala
 
+
 @api.route('/reporteSalarial')
 class Escala(Resource):
     def get(self):
@@ -456,6 +559,7 @@ class Escala(Resource):
         gr.graficoFechasDeCierreEscala(fechaCierreEscala)
 
         return jsonify(result)
+
 
 
 # api.add_resource(Empresas, "/empresas/<int:video_id>")
