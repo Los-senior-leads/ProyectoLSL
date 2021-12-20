@@ -1,6 +1,4 @@
-import sys
-sys.path.insert(0, 'flask')
-from app import contarElementosRepetidos
+from flasksrc.app import contarElementosRepetidos
 
 import pytest
 
