@@ -461,7 +461,7 @@ class Escala(Resource):
 
 # api.add_resource(Empresas, "/empresas/<int:video_id>")
 
-###Funciones de creacion de graficos para reportes
+###Funciones de creacion de graficos para reportes###
 
 #Grafica las fechas de creacion de las distintas empresas
 def graficoFechasDeCreacion(fechas):
@@ -480,7 +480,8 @@ def graficoFechasDeCreacion(fechas):
     plt.title("Número de empresas creadas a travez de los años")
 
     plt.savefig("../src/assets/graficoEmpresasFechasDeCreacion.png")
-    
+
+
 
 #Cuenta los elementos únicos de un array de elementos dado
 def contarElementosRepetidos(elementos):
