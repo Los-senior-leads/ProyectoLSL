@@ -1,0 +1,24 @@
+<div class="borde">
+  <div class="bordeVerde">
+    <div *ngIf="usuarios" class="d-flex justify-content-center">
+      <p  class="fw-normal" style="font-size:x-large">{{usuarios.nombre}}</p>
+    </div>
+
+    <dl *ngIf="usuarios" class="row">
+      <dt class="col-sm-3">Codigo: </dt>
+      <dd class="col-sm-9">{{usuarios.id}}</dd>
+    
+      <dt class="col-sm-3">Tipo de permiso:</dt>
+      <dd class="col-sm-9">{{usuarios.rol}}</dd>
+    
+      
+    </dl>
+    <div class="botones">
+      <div class="d-flex justify-content-around">
+        <button type="button" class="btn btn-dark btn-block" style="background-color: #47525E; width: max-content;" (click)="goEliminarUsuario()">Eliminar usuario</button>
+        <button type="button" class="btn btn-dark btn-block" style="background-color: #47525E; width: max-content;" (click)="goModificarUsuario()">Modificar usuario</button>
+      </div>
+    </div>
+  </div>
+    
+</div>
