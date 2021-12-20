@@ -14,8 +14,8 @@ jobs:
         command: pip install -U pip  # upgrade pip after installing python
     
     - name: create environment
-      run: python -m venv venv && source venv/bin/activate
-    
+      run: pyenv local 3.8.6 && python -mvenv .venv386
+
     - name: instalar dependencias
       run: pip install -r requirements.txt --upgrade pip
         
