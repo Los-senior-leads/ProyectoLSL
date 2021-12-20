@@ -10,11 +10,14 @@ jobs:
     # use the pyenv-action version 7
       uses: gabrielfalcao/pyenv-action@v7
       with:
-        default: Python 3.10.1 
+        default: Python 3.8.6 
         command: pip install -U pip  # upgrade pip after installing python
     
+    - name: create environment
+      run: python -m venv venv && source venv/bin/activate
+    
     - name: instalar dependencias
-      run: pip install -r requirements.txt --upgrade pi
+      run: pip install -r requirements.txt --upgrade pip
         
     - uses: actions/checkout@main
     - name: GitHub Action for pytest
