@@ -1,4 +1,4 @@
-from flasksrc.app import contarElementosRepetidos
+from flasksrc.contador import contarElementosRepetidos
 
 import pytest
 
