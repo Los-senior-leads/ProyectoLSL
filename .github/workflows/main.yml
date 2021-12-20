@@ -5,6 +5,20 @@ jobs:
     name: GitHub Action for pytest
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+    - name: Install python version
+    # use the pyenv-action version 7
+      uses: gabrielfalcao/pyenv-action@v7
+      with:
+        default: 3.8.6 # pick 3.8.6 verion 
+        command: pip install -U pip  # upgrade pip after installing python
+        
+    - name: crear entorno
+      run: python -m venv venv && source venv/Scripts/activate
+    
+    - name: instalar dependencias
+      run: pip install -r requirements.txt --upgrade pi
+        
     - uses: actions/checkout@main
     - name: GitHub Action for pytest
       uses: cclauss/GitHub-Action-for-pytest@master
