@@ -4,12 +4,17 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey, ForeignKeyConstraint
 from flask_marshmallow import Marshmallow
 from flask_restx import Api, Resource, fields, marshal_with
+
 from passlib.apps import custom_app_context as pwd_context
 from fastapi_jwt_auth import AuthJWT
 from pydantic import BaseModel
 from fastapi_jwt_auth.exceptions import AuthJWTException
 from fastapi import FastAPI, HTTPException, Depends, Request
 from fastapi.responses import JSONResponse
+
+from matplotlib import colors
+import generacionReportes as gr
+
 
 app = Flask(__name__)
 api = Api(app)
@@ -37,6 +42,7 @@ class Usuario(db.Model):
 
     # def verify_password(self, password_hash):
     #     return pwd_context.verify(password_hash, self.password_hash)
+
 
 class EmpresaModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -148,6 +154,7 @@ class CambiosEdModel(db.Model):
 # Creates the database
 db.create_all()
 
+
 # Schemas
 class UsuarioSchema(ma.Schema):
     class Meta:
@@ -196,12 +203,14 @@ class CambioEm(ma.Schema):
 cambioEm_schema = EmpresaSchema()
 cambioEms_schema = EmpresaSchema(many=True)
 
+
 resource_fields_usuarios = api.model("Usuario", {
     'id': fields.Integer,
     'nombre': fields.String,
     'contrasena': fields.String,
     'rol' : fields.String
 })
+
 
 resource_fields_empresa = api.model("Empresa", {
     'id': fields.Integer,
@@ -319,6 +328,7 @@ class Usuarios(Resource):
         return usuario
 
 
+
 @api.route('/empresas')
 class Empresas(Resource):
     def get(self):
@@ -369,6 +379,29 @@ class Empresas(Resource):
 
         db.session.commit()
         return empresa
+
+
+@api.route('/reporteEmpresas')
+class Empresas(Resource):
+    def get(self):
+        all_empresas = EmpresaModel.query.all()
+        result = empresas_schema.dump(all_empresas)
+
+        fechasCreacionEmpresas =[]
+        fechasCierreEmpresas = []
+        estadoEmpresas=[]
+
+        for emp in all_empresas:
+            fechasCreacionEmpresas.append(emp.fecha_creacion)
+            fechasCierreEmpresas.append(emp.fecha_cierre)
+            estadoEmpresas.append(emp.estado)
+        
+        gr.graficoFechasDeCreacion(fechasCreacionEmpresas)
+        gr.graficoFechasDeCierre(fechasCierreEmpresas)
+        gr.graficoEstado(estadoEmpresas)
+        
+        return jsonify(result)
+
 
 @api.route('/edificios')
 class Edificios(Resource):
@@ -424,6 +457,25 @@ class Edificios(Resource):
 
         db.session.commit()
         return edificio
+
+
+@api.route('/reporteEdificios')
+class Edificios(Resource):
+    def get(self):
+        all_edificios = EdificioModel.query.all()
+        result = edificio_schema.dump(all_edificios)
+
+        distrititosEdificios =[]
+        tiposEdificios = []
+
+        for edif in all_edificios:
+            distrititosEdificios.append(edif.distrito)
+            tiposEdificios.append(edif.tipo)
+        
+        gr.graficoDistritoEdificio(distrititosEdificios)
+        gr.graficoTipoEdificio(tiposEdificios)
+
+        return jsonify(result)
 
 @api.route('/escalas')
 class Escalas(Resource):
@@ -488,6 +540,27 @@ class Escalas(Resource):
         escala.fecha_cierre = request.json['fecha_cierre']
         db.session.commit()
         return escala
+
+
+@api.route('/reporteSalarial')
+class Escala(Resource):
+    def get(self):
+        all_escalas = EscalaModel.query.all()
+        result = escalas_schema.dump(all_escalas)
+
+        fechaCreacionEscala =[]
+        fechaCierreEscala = []
+
+        for esca in all_escalas:
+            fechaCreacionEscala.append(esca.fecha_aprobacion)
+            fechaCierreEscala.append(esca.fecha_cierre)
+        
+        gr.graficoFechasDeAprobacionEscala(fechaCreacionEscala)
+        gr.graficoFechasDeCierreEscala(fechaCierreEscala)
+
+        return jsonify(result)
+
+
 
 # api.add_resource(Empresas, "/empresas/<int:video_id>")
 
