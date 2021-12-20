@@ -13,8 +13,7 @@ const routes: Routes = [
       {path: 'modificarEscalaSalarial', loadChildren: () => import('./modificarEscalaSalarial/modificarEscalaSalarial.module').then(m => m.ModificarEscalaSalarialModule)},
       {path: 'modificarSueldo', loadChildren: () => import('./modificarSueldo/modificarSueldo.module').then(m => m.ModificarSueldoModule)},
       {path: 'reporteEscalaSalarial', loadChildren: () => import('./reporteSalarial/reporteSalarial.module').then(m => m.ReporteSalarialModule)},
-      {path: 'tablaEscalaSalarial', loadChildren: () => import('./tablaEscalaSalarial/tablaEscalaSalarial.module').then(m => m.TablaEscalaSalarialModule)},
-      {path: 'tablaEscalaSalarialUsuarios', loadChildren: () => import('./tablaEsaclaSalarialUsuarios/tablaEsaclaSalarialUsuarios.module').then(m => m.TablaEsaclaSalarialUsuariosModule)}
+      {path: 'tablaEscalaSalarial', loadChildren: () => import('./tablaEscalaSalarial/tablaEscalaSalarial.module').then(m => m.TablaEscalaSalarialModule)}
     ]
   }
 ];

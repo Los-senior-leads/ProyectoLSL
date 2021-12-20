@@ -7,23 +7,25 @@
     </div>
 
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Nombre de la empresa" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <input type="text" class="form-control" #nombreEmpresa placeholder="Nombre de la empresa" aria-label="Recipient's username" aria-describedby="button-addon2">
     </div>
 
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Funciones de la empresa" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <input type="text" class="form-control" #funciones placeholder="Funciones de la empresa" aria-label="Recipient's username" aria-describedby="button-addon2">
     </div>
 
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Fecha de registro" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <input type="text" class="form-control" #fecha placeholder="Fecha de registro" aria-label="Recipient's username" aria-describedby="button-addon2">
     </div>
 
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Documentación" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <input type="text" class="form-control" #docs placeholder="Documentación" aria-label="Recipient's username" aria-describedby="button-addon2">
     </div>
 
     <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-dark btn-block" style="background-color: #47525E; width: max-content;" >Modificar </button>
+      <button (click)="edit(nombreEmpresa.value, funciones.value,
+      fecha.value, docs.value); nombreEmpresa.value=''; funciones.value=''
+      ;fecha.value=''; docs.value=''"type="button" class="btn btn-dark btn-block" style="background-color: #47525E; width: max-content;" >Modificar </button>
     </div>
 
   </div>
