@@ -17,5 +17,5 @@ jobs:
       run: ng build --output-path docs --base-href /ProyectoLSL/
     - name: copying files
       run: cp /home/runner/work/ProyectoLSL/ProyectoLSL/docs/index.html /home/runner/work/ProyectoLSL/ProyectoLSL/404.html
-    - name: git status
-      run: git status
+    - name: git branch
+      run: git branch
