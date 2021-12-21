@@ -23,5 +23,5 @@ jobs:
           git config --global user.email 'ricardo.tejerina314@gmail.com'
           git add .
           git commit -am "Automated report"
-          git push
+          git push 
 
