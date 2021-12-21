@@ -1,5 +1,7 @@
 {
-  "directories": {"output": "release/" },
+  "directories": {
+    "output": "release/"
+  },
   "name": "proyecto-sicoes",
   "version": "0.0.0",
   "scripts": {
