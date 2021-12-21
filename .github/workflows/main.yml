@@ -11,5 +11,5 @@ jobs:
         github_access_token: ${{ secrets.ACCESS_TOKEN }}
         build_configuration: production 
         base_href: /ProyectoLSL/
-        deploy_branch: gh-pages 
-        angular_dist_build_folder: /docs/ProyectoLSL
+        deploy_branch: gh-pages-test
+        angular_dist_build_folder: dist/ProyectoLSL
