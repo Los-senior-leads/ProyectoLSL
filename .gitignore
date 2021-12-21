@@ -48,4 +48,4 @@ Thumbs.db
 /venv
 
 # Cache
-/flask/__pycache__
+/flasksrc/__pycache__
