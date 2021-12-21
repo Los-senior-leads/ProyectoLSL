@@ -22,4 +22,8 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['pagesUser']);
   }
 
+  goToPagesSuperUser() : void{
+    this.router.navigate(['pagesSuperUser']);
+  }
+
 }

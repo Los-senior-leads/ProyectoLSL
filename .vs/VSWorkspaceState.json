@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\flask",
+    "\\src\\app",
+    "\\src\\app\\login",
+    "\\src\\app\\pages",
+    "\\src\\app\\pages\\edificios"
+  ],
+  "SelectedNode": "\\flask\\app.py",
+  "PreviewInSolutionExplorer": false
+}

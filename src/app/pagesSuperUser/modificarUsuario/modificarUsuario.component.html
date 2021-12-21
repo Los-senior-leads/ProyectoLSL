@@ -1,0 +1,27 @@
+<div class="borde">
+  
+  <div class="bordeVerde">
+    
+    <div class="d-flex justify-content-center">
+      <p  class="fw-normal" style="font-size:x-large"> Modificar usuario</p>
+    </div>
+
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" #contrasena placeholder="Nueva contraseña" aria-label="Recipient's username" aria-describedby="button-addon2">
+    </div>
+
+    <select class="form-select" #rol aria-label="Default select example">
+      <option selected>Tipo de permiso</option>
+      <option value="usuario">Usuario</option>
+      <option value="administrador">Administrador</option>
+      <option value="superusuario">Super usuario</option>
+    </select>
+
+    <div class="d-flex justify-content-end">
+      <button (click)="edit(contrasena.value, rol.value); contrasena.value=''; rol.value=''"
+      type="button" class="btn btn-dark btn-block" style="background-color: #47525E; width: max-content;" >Modificar </button>
+    </div>
+
+  </div>
+
+</div>

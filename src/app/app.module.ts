@@ -14,7 +14,8 @@ const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule)},
   {path: 'pages', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)},
-  {path: 'pagesUser', loadChildren: () => import('./pagesUsers/pagesUsers.module').then(m => m.PagesUsersModule)}
+  {path: 'pagesUser', loadChildren: () => import('./pagesUsers/pagesUsers.module').then(m => m.PagesUsersModule)},
+  {path: 'pagesSuperUser', loadChildren: () => import('./pagesSuperUser/pagesSuperUser.module').then(m => m.PagesSuperUserModule)}
 ];
 
 @NgModule({
