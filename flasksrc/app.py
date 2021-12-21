@@ -15,6 +15,16 @@ from fastapi.responses import JSONResponse
 from matplotlib import colors
 import generacionReportes as gr
 
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root"
+)
+
+mycursor = mydb.cursor()
+mycursor.execute("CREATE DATABASE IF NOT EXISTS lsl") 
+
 
 app = Flask(__name__)
 api = Api(app)
