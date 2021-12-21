@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Edificio } from '../edificio';
+import { TablaEdificiosService } from './tabla-edificios.service';
 
 @Component({
   selector: 'app-tablaEdificios',
@@ -8,11 +10,17 @@ import { Router } from '@angular/router';
 })
 export class TablaEdificiosComponent implements OnInit {
 
-  @Input() data:any;
+  edificios: Edificio[] = [];
 
-  constructor(private router :Router) { }
+  constructor(private router :Router, private tablaEdificiosService: TablaEdificiosService) { }
 
   ngOnInit() {
+    this.getEdificios();
+  }
+
+  getEdificios(): void {
+    this.tablaEdificiosService.getEdificios()
+      .subscribe(edificios => (this.edificios = edificios))
   }
 
   goToCrearEdificio() : void{
@@ -24,8 +32,8 @@ export class TablaEdificiosComponent implements OnInit {
   }
   
   /* Para el paso de parametros en el momento de la navegacion, usar el input data.codigo*/ 
-  goToInfoEdificio() : void{
-    this.router.navigate(['pages/edificios/informacionEdificio'], this.data);
+  goToInfoEdificio(id: number) : void{
+    this.router.navigate(['pages/edificios/informacionEdificio', id]);
   }
 
 }

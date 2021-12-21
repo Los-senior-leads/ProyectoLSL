@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Edificio } from '../edificio';
-import { Empresa } from '../../unidadesAdministrativas/empresa';
 
 @Injectable({
   providedIn: 'root'

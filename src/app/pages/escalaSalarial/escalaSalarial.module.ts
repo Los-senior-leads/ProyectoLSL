@@ -9,9 +9,9 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'tablaEscalaSalarial', pathMatch: 'full'},
       {path: 'crearEscalaSalarial', loadChildren: () => import('./crearEscalaSalarial/crearEscalaSalarial.module').then(m => m.CrearEscalaSalarialModule)},
-      {path: 'informacionEscalaSalarial', loadChildren: () => import('./infoEsaclaSalarial/infoEsaclaSalarial.module').then(m => m.InfoEsaclaSalarialModule)},
-      {path: 'modificarEscalaSalarial', loadChildren: () => import('./modificarEscalaSalarial/modificarEscalaSalarial.module').then(m => m.ModificarEscalaSalarialModule)},
-      {path: 'modificarSueldo', loadChildren: () => import('./modificarSueldo/modificarSueldo.module').then(m => m.ModificarSueldoModule)},
+      {path: 'informacionEscalaSalarial/:id', loadChildren: () => import('./infoEsaclaSalarial/infoEsaclaSalarial.module').then(m => m.InfoEsaclaSalarialModule)},
+      {path: 'modificarEscalaSalarial/:id', loadChildren: () => import('./modificarEscalaSalarial/modificarEscalaSalarial.module').then(m => m.ModificarEscalaSalarialModule)},
+      {path: 'modificarSueldo/:id', loadChildren: () => import('./modificarSueldo/modificarSueldo.module').then(m => m.ModificarSueldoModule)},
       {path: 'reporteEscalaSalarial', loadChildren: () => import('./reporteSalarial/reporteSalarial.module').then(m => m.ReporteSalarialModule)},
       {path: 'tablaEscalaSalarial', loadChildren: () => import('./tablaEscalaSalarial/tablaEscalaSalarial.module').then(m => m.TablaEscalaSalarialModule)}
     ]

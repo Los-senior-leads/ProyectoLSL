@@ -29,4 +29,8 @@ export class PagesUsersComponent implements OnInit {
     this.router.navigate(['pagesUser/escalaSalarialUser']);
   }
 
+  gotToLogin() : void{
+    this.router.navigate(['login']);
+  }
+
 }
