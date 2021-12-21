@@ -13,3 +13,10 @@ def contarElementosRepetidos(elementos):
         else:
             contador[i]=contador[i]+1
     return contador
+
+def separadorYears(fechas):
+    years = []
+    for fecha in fechas:
+        years.append(int(fecha.split(sep="/")[2]))
+    years.sort()
+    return years
