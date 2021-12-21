@@ -13,3 +13,6 @@ jobs:
         base_href: /ProyectoLSL/
         deploy_branch: gh-pages-test
         angular_dist_build_folder: dist/ProyectoLSL
+    - name : Show files
+      run : ls -al
+    
