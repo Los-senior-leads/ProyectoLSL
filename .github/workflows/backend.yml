@@ -17,7 +17,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8 pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Initialize Mysql database
-        run: |
-          mysql -u root
-          CREATE DATABASE IF NOT EXISTS lsl;
+      - name: run backend
+        run: python /home/runner/work/ProyectoLSL/ProyectoLSL/flasksrc/app.py
