@@ -5,38 +5,34 @@
       <tr>
         <th scope="col">Código</th>
         <th scope="col">Nombre</th>
+        <th scope="col">Id Empresa</th>
         <th scope="col">Coordenadas</th>
         <th scope="col">Tipo de edificio</th>
+        <th scope="col">Dirección</th>
         <th scope="col">Distrito</th>
         <th scope="col">Estado</th>
-        <th scope="col">Dirección</th>
+        <th scope="col">Cantidad de personas</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let edificio of edificios">
       <tr>
         <!-- Manera de conectar con la base de datos  a traves de un servicio
         <th scope="row">{{data.codigo}}</th> -->
 
         <!-- El Codigo debe estar en forma de boton  o hipervinculo para llevarlo a la información-->
         <th scope="row">
-          <button (click)=" goToInfoEdificio()">
-            1
+          <button (click)=" goToInfoEdificio(edificio.id)">
+            {{edificio.id}}
           </button>
         </th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
+        <td>{{edificio.nombre}}</td>
+        <td>{{edificio.id_empresa}}</td>
+        <td>{{edificio.coordenadas}}</td>
+        <td>{{edificio.tipo}}</td>
+        <td>{{edificio.direccion}}</td>
+        <td>{{edificio.distrito}}</td>
+        <td>{{edificio.estado}}</td>
+        <td>{{edificio.cantidad_personas}}</td>
       </tr>
     </tbody>
   </table>

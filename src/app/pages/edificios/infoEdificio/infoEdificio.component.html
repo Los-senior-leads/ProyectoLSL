@@ -1,31 +1,34 @@
 <div class="borde">
   <div class="bordeVerde">
-    <div class="d-flex justify-content-center">
+    <div *ngIf="edificio" class="d-flex justify-content-center">
       <p  class="fw-normal" style="font-size:x-large"> Nombre edificio</p>
     </div>
 
-    <dl class="row">
+    <dl *ngIf="edificio" class="row">
       <dt class="col-sm-3">Nombre:</dt>
-      <dd class="col-sm-9">Edificio1</dd>
+      <dd class="col-sm-9">{{edificio.nombre}}</dd>
     
       <dt class="col-sm-3">Código:</dt>
       <!-- Puedes Usar pipes para que visualmente se vea como una fecha al pasarlo de la base de datos-->
-      <dd class="col-sm-9"> 12</dd>
+      <dd class="col-sm-9">{{edificio.id}}</dd>
     
       <dt class="col-sm-3">Coordenadas:</dt>
-      <dd class="col-sm-9">112233</dd>
+      <dd class="col-sm-9">{{edificio.coordenadas}}</dd>
     
       <dt class="col-sm-3 text-truncate">Tipo de edificio:</dt>
-      <dd class="col-sm-9">This can be useful when space is tight. Adds an ellipsis at the end.</dd>
+      <dd class="col-sm-9">{{edificio.tipo}}</dd>
     
       <dt class="col-sm-3">Distrito:</dt>
-      <dd class="col-sm-9">xxx</dd>
+      <dd class="col-sm-9">{{edificio.distrito}}</dd>
 
       <dt class="col-sm-3">Estado:</dt>
-      <dd class="col-sm-9">Activo</dd>
+      <dd class="col-sm-9">{{edificio.estado}}</dd>
 
       <dt class="col-sm-3">Dirección:</dt>
-      <dd class="col-sm-9">Cota Cota #35 </dd>
+      <dd class="col-sm-9">{{edificio.direccion}}</dd>
+
+      <dt class="col-sm-3">Cantidad de personas:</dt>
+      <dd class="col-sm-9">{{edificio.cantidad_personas}}</dd>
       
     </dl>
     <div class="botones">
