@@ -18,7 +18,7 @@ import generacionReportes as gr
 import mysql.connector
 
 mydb = mysql.connector.connect(
-  host="127.0.0.1",
+  host="localhost",
   user="root"
 )
 
@@ -28,7 +28,7 @@ mycursor.execute("CREATE DATABASE IF NOT EXISTS lsl")
 
 app = Flask(__name__)
 api = Api(app)
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root@127.0.0.1/lsl'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root@localhost/lsl'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 
 db = SQLAlchemy(app)
