@@ -173,11 +173,11 @@ empresas_schema = EmpresaSchema(many=True)
 
 class EdificioSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'id_empresa', 'coordenada', 'nombre', 'tipo',
+        fields = ('id', 'id_empresa', 'coordenadas', 'nombre', 'tipo',
         'direccion', 'distrito', 'estado', 'cantidad_personas')
 
-edificio_schema = EmpresaSchema()
-edificios_schema = EmpresaSchema(many=True)
+edificio_schema = EdificioSchema()
+edificios_schema = EdificioSchema(many=True)
 
 class EscalaSchema(ma.Schema):
     class Meta:
@@ -186,22 +186,22 @@ class EscalaSchema(ma.Schema):
         'haber_basico', 'numero_items', 'costo_mensual', 'costo_anual', 
         'fecha_aprobacion', 'fecha_cierre')
 
-escala_schema = EmpresaSchema()
-escalas_schema = EmpresaSchema(many=True)
+escala_schema = EscalaSchema()
+escalas_schema = EscalaSchema(many=True)
 
 class CambioEd(ma.Schema):
     class Meta:
         fields = ('id', 'id_edificio', 'operacion', 'fecha', 'motivo', 'documentacion')
 
-cambioEd_schema = EmpresaSchema()
-cambioEds_schema = EmpresaSchema(many=True)
+cambioEd_schema = CambioEd()
+cambioEds_schema = CambioEd(many=True)
 
 class CambioEm(ma.Schema):
     class Meta:
         fields = ('id', 'id_empresa', 'operacion', 'fecha', 'motivo', 'documentacion')
 
-cambioEm_schema = EmpresaSchema()
-cambioEms_schema = EmpresaSchema(many=True)
+cambioEm_schema = CambioEm()
+cambioEms_schema = CambioEm(many=True)
 
 
 resource_fields_usuarios = api.model("Usuario", {

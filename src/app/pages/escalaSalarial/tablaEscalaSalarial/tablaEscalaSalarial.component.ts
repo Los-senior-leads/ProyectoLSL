@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Escala } from '../escala';
+import { TablaEscalaService } from './tabla-escala.service';
 
 @Component({
   selector: 'app-tablaEscalaSalarial',
@@ -8,15 +10,22 @@ import { Router } from '@angular/router';
 })
 export class TablaEscalaSalarialComponent implements OnInit {
 
-  @Input() data:any;
+  escalas: Escala[] = [];
 
-  constructor(private router :Router) { }
+  constructor(private router :Router,
+    private tablaEscalasService: TablaEscalaService) { }
 
   ngOnInit() {
+    this.getEscalas();
   }
 
-  goToInfoEscalaSalarial(): void{
-    this.router.navigate(['pages/escalaSalarial/informacionEscalaSalarial']);
+  getEscalas(): void {
+    this.tablaEscalasService.getEscalas()
+      .subscribe(escalas => (this.escalas = escalas))
+  }  
+
+  goToInfoEscalaSalarial(id: number): void{
+    this.router.navigate(['pages/escalaSalarial/informacionEscalaSalarial', id]);
   }
 
   goToReporteEscalaSalarial() : void{

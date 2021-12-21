@@ -20,13 +20,13 @@ export class TablaUnidadAdministrativaComponent implements OnInit {
     this.getEmpresas();
   }
 
-  goToEdificios() : void {
-    this.router.navigate(['edificios'])
-  }
-
   getEmpresas(): void {
     this.tablaUnidadAdministrativa.getEmpresas()
       .subscribe(empresas => (this.empresas = empresas))
+  }
+
+  goToEdificios() : void {
+    this.router.navigate(['edificios'])
   }
 
   goToCrearEmpresa() : void{
