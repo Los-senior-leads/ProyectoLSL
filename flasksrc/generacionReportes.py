@@ -6,10 +6,7 @@ import contador as cn
 
 #Grafica las fechas de creacion de las distintas empresas
 def graficoFechasDeCreacion(fechas):
-    years = []
-    for fecha in fechas:
-        years.append(int(fecha.split(sep="/")[2]))
-    years.sort()
+    years = cn.separadorYears(fechas)
     contadorEmpresas = cn.contarElementosRepetidos(years)
     uniqueYear = list(set(years))
     uniqueYear.sort()
@@ -27,11 +24,7 @@ def graficoFechasDeCreacion(fechas):
 #Grafica las fechas de creacion de las distintas empresas
 def graficoFechasDeCierre(fechas):
 
-    years = []
-    for fecha in fechas:
-        if len(fecha)>0 :
-            years.append(int(fecha.split(sep="/")[2]))
-    years.sort()
+    years = cn.separadorYears(fechas)
     contadorEmpresas = cn.contarElementosRepetidos(years)
     uniqueYear = list(set(years))
     uniqueYear.sort()
@@ -90,10 +83,7 @@ def graficoDistritoEdificio(distritos):
 
 #Grafico de tipo Scatter de aprobacion de escala
 def graficoFechasDeAprobacionEscala(fechas):
-    years = []
-    for fecha in fechas:
-        years.append(int(fecha.split(sep="/")[2]))
-    years.sort()
+    years = cn.separadorYears(fechas)
     contadorEscalas = cn.contarElementosRepetidos(years)
     uniqueYear = list(set(years))
     uniqueYear.sort()
@@ -109,10 +99,7 @@ def graficoFechasDeAprobacionEscala(fechas):
 
 #Grafico de fechas de cierre de escala salarial
 def graficoFechasDeCierreEscala(fechas):
-    years = []
-    for fecha in fechas:
-        years.append(int(fecha.split(sep="/")[2]))
-    years.sort()
+    years = cn.separadorYears(fechas)
     contadorEscalas = cn.contarElementosRepetidos(years)
     uniqueYear = list(set(years))
     uniqueYear.sort()
