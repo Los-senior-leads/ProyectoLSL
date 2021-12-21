@@ -1,3 +1,28 @@
+<div class="row">
+  <div class="col">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-dark" id="dropdownBasic1" ngbDropdownToggle>Ordenar por...</button>
+      <!--<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem>Action - 1</button>
+        <button ngbDropdownItem>Another Action</button>
+        <button ngbDropdownItem>Something else is here</button>
+      </div>-->
+    </div>
+  </div>
+
+  <div class="col text-right">
+    <div ngbDropdown placement="top-right" class="d-inline-block">
+      <button class="btn btn-outline-dark" id="dropdownBasic2" ngbDropdownToggle>Mostrar columnas...</button>
+      <!--<div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+        <button ngbDropdownItem>Action - 1</button>
+        <button ngbDropdownItem>Another Action</button>
+        <button ngbDropdownItem>Something else is here</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
 <div class="bordeTabla">
   <table class="table">
     <thead>
@@ -10,29 +35,56 @@
         <th scope="col">Estado</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let empresa of empresas">
       <tr>
         <!-- Manera de conectar con la base de datos  a traves de un servicio
         <th scope="row">{{data.codigo}}</th> -->
 
         <!-- El Codigo debe estar en forma de boton  o hipervinculo para llevarlo a la información-->
-        <th scope="row"> 1
+        <th scope="row">
+          
+          <button (click)=" goToInfoEmpresa(empresa.id)">
+            <!-- <app-infoEmpresa [id]="empresa.id"></app-infoEmpresa> -->
+            {{empresa.id}}
+          </button>
         </th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
+        <td>{{empresa.nombre}}</td>
+        <td>{{empresa.fecha_creacion}}</td>
+        <td>{{empresa.descripcion}}</td>
+        <td>{{empresa.funciones}}</td>
+        <td>{{empresa.estado}}</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+
+
+<div class = "botonesAbajo">
+  <div class="d-flex justify-content-between">
+    <div class="botonIzquierda">
+    </div>
+    <div  class = "paginacion">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="botonDerecha">
+    </div>
+  </div>
+</div>
+
