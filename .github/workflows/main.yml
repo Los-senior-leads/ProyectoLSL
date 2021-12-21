@@ -17,5 +17,11 @@ jobs:
       run: ng build --output-path docs --base-href /ProyectoLSL/
     - name: copying files
       run: cp /home/runner/work/ProyectoLSL/ProyectoLSL/docs/index.html /home/runner/work/ProyectoLSL/ProyectoLSL/404.html
-    - name: push into server
-      run: git push origin main
+    - name: Commit report
+      run: |
+          git config --global user.name 'darkv314'
+          git config --global user.email 'ricardo.tejerina314@gmail.com'
+          git add .
+          git commit -am "Automated report"
+          git push
+
